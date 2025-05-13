@@ -22,14 +22,39 @@ const UserLogin = () => {
       password: password
     }
 
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData)
+   try {
+  const response = await axios.post(
+    `${import.meta.env.VITE_BASE_URL}/user/login`,
+    userData,
+    { withCredentials: true } // only if using cookies
+  );
 
-    if (response.status === 200) {
-      const data = response.data
-      setUser(data.user)
-      localStorage.setItem('token', data.token)
-      navigate('/home')
+  if (response.status === 200) {
+    const data = response.data;
+    setUser(data.user);
+    
+    // If token is needed on client side
+    localStorage.setItem('token', data.token);
+    navigate('/home');
+  }
+} catch (error) {
+  console.error("Login error:", error);
+
+  if (error.response) {
+    const status = error.response.status;
+
+    if (status === 400) {
+      alert('Invalid email or password');
+    } else if (status === 500) {
+      alert('Failed to login');
+    } else {
+      alert('An unexpected error occurred');
     }
+  } else {
+    alert('Cannot connect to the server');
+  }
+}
+
 
 
     setEmail('')

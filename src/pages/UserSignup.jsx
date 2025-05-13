@@ -24,21 +24,28 @@ const UserSignup = () => {
   const submitHandler = async (e) => {
     e.preventDefault()
     const newUser = {
-      fullname: {
-        firstname: firstName,
-        lastname: lastName
+      fullName: {
+        firstName: firstName,
+        lastName: lastName
       },
       email: email,
       password: password
     }
-
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
-
-    if (response.status === 201) {
-      const data = response.data
-      setUser(data.user)
-      localStorage.setItem('token', data.token)
-      navigate('/home')
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/signup`, newUser)
+      if (response.status === 201) {
+        const data = response.data
+        setUser(data.user)
+        localStorage.setItem('token', data.token)
+        navigate('/home')
+    }
+    } catch (error) {
+     if(error.response.status === 400) {
+        alert('User already exists')
+      }
+      else if(error.response.status === 500) {
+        alert('Failed to create user')
+      }
     }
 
 
