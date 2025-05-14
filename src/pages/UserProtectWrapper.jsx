@@ -15,6 +15,7 @@ const UserProtectWrapper = ({
         if (!token) {
             navigate('/login')
         }
+        // login 
 
         axios.get(`${import.meta.env.VITE_BASE_URL}/user/getUserProfile`, {
             headers: {
