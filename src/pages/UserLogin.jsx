@@ -64,8 +64,8 @@ const UserLogin = () => {
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>
       <div>
-        <img className='w-20 mb-10' src="../src/assets/image.png" alt="" />
-        {/* taxi-management-app-frontend\src\assets\image.png */}
+        <img className='w-20 mb-10' src="https://res.cloudinary.com/dmq0zgt1x/image/upload/v1747645801/image_eqnrev.png" alt="" />
+    
 
         <form onSubmit={(e) => {
           submitHandler(e)

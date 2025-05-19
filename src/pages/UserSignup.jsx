@@ -59,7 +59,7 @@ const UserSignup = () => {
     <div>
       <div className='p-7 h-screen flex flex-col justify-between'>
         <div>
-          <img className='w-16 mb-10' src="../src/assets/image.png" alt="" />
+          <img className='w-16 mb-10' src="https://res.cloudinary.com/dmq0zgt1x/image/upload/v1747645801/image_eqnrev.png" alt="" />
 
           <form onSubmit={(e) => {
             submitHandler(e)
